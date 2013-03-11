@@ -1,0 +1,41 @@
+#map_canvas {
+  height: 100%
+}
+header a, h1 {
+  float: left;
+}
+h1 {
+  margin: 15px 0 50px 200px;
+  color: green;
+}
+
+section {
+  clear: both;
+  width: 70%;
+  margin-top: -30px;
+}
+section, aside {
+  float: left;
+}
+aside {
+  width: 25%;
+  padding-top: 18px;
+}
+.display-list {
+  background: green;
+  padding: 0 7px 7px;
+  height: 330px;
+  overflow: auto;
+}
+h3 {
+  text-align: center;
+  color: #CCC;
+}
+.display-list a {
+  color: #CCC;
+}
+footer {
+  clear: both;
+  text-align: center;
+  color: #999;
+}

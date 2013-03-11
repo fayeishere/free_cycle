@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgtUj9-u9zRi20k6Apg-Ii9TqbJmFa_2Q&sensor=false&marker=Portland,+Oregon">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(45.528, -122.676),
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+      }
+    </script>
+  </head>
+
+  <body onload="initialize()">
+    <div >
+
+    </div>
+
+<div class="container">
+
+  <header>
+    <!-- banner -->
+    <a href="#">
+      <img src="http://static.t-f-n.org/images/freecycle_logo.jpg" alt="free cycle logo" width="150px" height="50px">
+    </a>
+    <h1>Free Cycle Mapper</h1>
+  </header>
+
+  <section>
+    <div class="map">
+      <h2>Items available in Portland, OR</h2>
+      <div id="map_canvas" style="width:600px; height:600px"></div>
+    </div>
+  </section>
+
+  <aside>
+    <form>
+      <fieldset>
+        <legend>Filter your search</legend>
+        <input type="text" placeholder="Location">
+        <span class="help-block">Enter anything you would enter in a Google Maps search</span>
+        <input type="text" placeholder="Keyword">
+        <span class="help-block">Enter your heart's desire</span>
+        <button type="submit" class="btn">Filter</button>
+      </fieldset>
+    </form>
+
+    <div class="display-list">
+      <h3>Today's Posts</h3>
+      <p><a href="#">Cracker Jack Boxes</a></p>
+      <p><a href="#">Magic Can Opener</a></p>
+      <p><a href="#">Michael Jackson</a></p>
+      <p><a href="#">Socks</a></p>
+      <p><a href="#">Bronzed Chicken</a></p>
+      <p><a href="#">Green Ooze</a></p>
+      <p><a href="#">Box of mud</a></p>
+      <p><a href="#">Pilgrims</a></p>
+      <p><a href="#">Evil Mirror</a></p>
+      <p><a href="#">Surfer Movie</a></p>
+      <p><a href="#">OFFER: iPad</a></p>
+      <p><a href="#">OFFERING: Leaves</a></p>
+      <p><a href="#">Empty Gas Can</a></p>
+      <p><a href="#">Zombie Survival Kit</a></p>
+      <p><a href="#">Wonder Bread</a></p>
+    </div>
+  </aside>
+
+  <footer class="well well-large">
+    <h4>Contact us at 4567 SassySass Lane in Portland, OR</h4>
+  </footer>
+
+</div>
+
+</body>
+</html>
