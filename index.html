@@ -10,14 +10,28 @@
     </script>
     <script type="text/javascript">
       function initialize() {
+        // var mapOptions = {
+        //   center: new google.maps.LatLng(45.528, -122.676),
+        //   zoom: 12,
+        //   mapTypeId: google.maps.MapTypeId.ROADMAP
+        // };
+        var myLatlng = new google.maps.LatLng(45.555, -122.676);
         var mapOptions = {
-          center: new google.maps.LatLng(45.528, -122.676),
           zoom: 12,
+          center: new google.maps.LatLng(45.528, -122.676),
           mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map_canvas"),
-            mapOptions);
+        }
+        var image ='arrow.png';
+        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title:"Hello World!",
+            icon: image
+        });
       }
+      // To add the marker to the map, call setMap();
+      marker.setMap(map);
     </script>
   </head>
 
