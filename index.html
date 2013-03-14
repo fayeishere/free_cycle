@@ -4,65 +4,71 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgtUj9-u9zRi20k6Apg-Ii9TqbJmFa_2Q&sensor=false&marker=Portland,+Oregon">
-    </script>
-    <script type="text/javascript">
-    // initialize function to open map centered on Portland w/ green arrow marker
-       function initialize() {
-        var myLatlng = new google.maps.LatLng(45.528, -122.676);
-        var mapOptions = {
-          zoom: 12,
-          center: new google.maps.LatLng(45.528, -122.676),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        var image ='arrow.png';
-        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title:"Freecycle Mapper!",
-            icon: image
-        });
-      }
-      // To add the marker to the map, call setMap();
-      //Can't seem to keep green arrow marker with codeAddress marker
-      // marker.setMap(map);
-      var geocoder;
-      function initAddress() {
-        geocoder = new google.maps.Geocoder();
-        var latlng = new google.maps.LatLng(45.528, -122.676);
-        var mapOptions = {
-          zoom: 8,
-          center: latlng,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-      }
-        // This function adds the address passed to the map as a marker
-      function codeAddress(address) {
-        // var address = document.getElementById("address").value;
-        geocoder.geocode( { 'address': address}, function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgtUj9-u9zRi20k6Apg-Ii9TqbJmFa_2Q&sensor=false&marker=Portland,+Oregon"></script>
+    <script>
+      $(document).ready(function() {
+        function initialize() {
+          var myLatlng = new google.maps.LatLng(45.528, -122.676);
+          var mapOptions = {
+            zoom: 12,
+            center: new google.maps.LatLng(45.528, -122.676),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+          var marker = new google.maps.Marker({
+              position: myLatlng,
               map: map,
-              position: results[0].geometry.location
-            });
-          } else {
-            alert("Geocode was not successful for the following reason: " + status);
-          }
-        });
-      }
+              title:"Freecycle Mapper!",
+          });
+        }
 
+        // To add the marker to the map, call setMap();
+        // Can't seem to keep green arrow marker with codeAddress marker
+        // marker.setMap(map);
+        var geocoder;
+        function initAddress() {
+          geocoder = new google.maps.Geocoder();
+          var latlng = new google.maps.LatLng(45.528, -122.676);
+          var mapOptions = {
+            zoom: 10,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        }
+
+          // This function adds the address passed to the map as a marker
+        function codeAddress(address) {
+          // var address = document.getElementById("address").value;
+          geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              // map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+              });
+            } else {
+              alert("Geocode was not successful for the following reason: " + status);
+            }
+          });
+        }
+        initialize();
+        initAddress();
+        codeAddress("Gresham");
+        $("h1").click(function() {
+          alert("Help!")
+        })
+      });
     </script>
   </head>
 
   <!-- Need to change this to jquery so onload doesn't take forever -->
   <!-- Using Gresham as a placeholder for our future email addresses -->
   <!-- With jquery use a loop to pass in email addresses with limits -->
-  <body onload='initialize();initAddress();codeAddress("Gresham");'>
+  <body>
     <div >
 
     </div>
