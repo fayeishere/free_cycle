@@ -39,4 +39,8 @@ footer {
   clear: both;
   text-align: center;
   color: #999;
+
+.posts p, .posts div {
+  float: left;
+}
 }
