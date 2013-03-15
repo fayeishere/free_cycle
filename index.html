@@ -57,17 +57,24 @@
         }
         initialize();
         initAddress();
-        codeAddress("Gresham");
+        // codeAddress("Gresham");
         $("h1").click(function() {
           alert("Help!")
         })
+        var addressArray=new Array();
+        addressArray[0] = "Gresham";
+        addressArray[1] = "Portland";
+        addressArray[2] = "Hillsboro";
+
+
+        for (var i = 0; i < 3; i++) {
+          // var emailAddress = addressArray[i];
+          codeAddress(addressArray[i]);
+        }
       });
     </script>
   </head>
 
-  <!-- Need to change this to jquery so onload doesn't take forever -->
-  <!-- Using Gresham as a placeholder for our future email addresses -->
-  <!-- With jquery use a loop to pass in email addresses with limits -->
   <body>
     <div >
 
