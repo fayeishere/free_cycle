@@ -10,14 +10,25 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgtUj9-u9zRi20k6Apg-Ii9TqbJmFa_2Q&sensor=false&marker=Portland,+Oregon"></script>
     <script>
       $(document).ready(function() {
+
+        // 1. SET SOME GLOBAL VARS THAT INITIALIZE WILL SET
+        // AND CODEADDRESS WILL USE
+        var geocoder; //codeAddress needs this, initialize sets this
+        var map; //codeAddress needs this, initialize sets this
+        var currentPopup; //codeAddress needs this
+        var homeCenter; // center of the map- used when closing popups
+
         function initialize() {
-          var myLatlng = new google.maps.LatLng(45.528, -122.676);
+          //geocoder is a global var, no var prefix here
+          geocoder = new google.maps.Geocoder();
+          var myLatlng = homeCenter = new google.maps.LatLng(45.528, -122.676); // this is Portland
           var mapOptions = {
             zoom: 12,
             center: new google.maps.LatLng(45.528, -122.676),
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
-          var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+          //map is a global var, no var prefix here
+          map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
           var marker = new google.maps.Marker({
               position: myLatlng,
               map: map,
@@ -25,49 +36,79 @@
           });
         }
 
-        // To add the marker to the map, call setMap();
-        // Can't seem to keep green arrow marker with codeAddress marker
-        // marker.setMap(map);
-        var geocoder;
-        function initAddress() {
-          geocoder = new google.maps.Geocoder();
-          var latlng = new google.maps.LatLng(45.528, -122.676);
-          var mapOptions = {
-            zoom: 10,
-            center: latlng,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
-          map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-        }
-
-          // This function adds the address passed to the map as a marker
+        // This function adds the address passed to the map as a marker
         function codeAddress(address) {
           // var address = document.getElementById("address").value;
           geocoder.geocode( { 'address': address}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
               // map.setCenter(results[0].geometry.location);
               var marker = new google.maps.Marker({
-                map: map,
+                map: map, // using global "map" var here
                 position: results[0].geometry.location
               });
-            } else {
+              var popup = new google.maps.InfoWindow({
+                  content: "test", // 3. DEFINE WHAT CONTENT WE WANT TO SHOW IN THE POPUP
+                                    //   IF WE WANT TO SHOW THE LISTING CONTENT, WE'LL NEED
+                                    //    TO PASS THAT INTO THE FUNCTION - NOTE THAT ADDRESS
+                                    //    IS THE ONLY PARAMETER
+                  maxWidth: 300
+              });
+              google.maps.event.addListener(marker, "click", function() {
+                  if (currentPopup != null) {
+                      currentPopup.close();
+                      currentPopup = null;
+                  }
+                  popup.open(map, marker);
+                  map.setCenter(results[0].geometry.location);
+                  currentPopup = popup;
+              });
+              google.maps.event.addListener(popup, "closeclick", function() {
+                  //map.panTo(homeCenter);
+                  currentPopup = null;
+              });
+
+            }
+            else {
               alert("Geocode was not successful for the following reason: " + status);
             }
           });
         }
         initialize();
-        initAddress();
-        codeAddress("Gresham");
+        geoLoop();
+        // codeAddress("Gresham");
         $("h1").click(function() {
           alert("Help!")
         })
+        //this function takes addresses from array and loops them into
+        // geocode function to produce markers
+        function geoLoop() {
+          var addressArray=new Array();
+          // These all work!!! Things that don't are parens and generic
+          // names that can be confused -- they need OR added
+          addressArray[0] = "Gresham";
+          addressArray[1] = "Portland";
+          addressArray[2] = "Hillsboro";
+          addressArray[3] = "5225 SE Taggart Ct, Portland, OR";
+          addressArray[4] = "SE Morrison St & SE 12th Ave";
+          addressArray[5] = "SE Oak & 10th, Portland, OR";
+          addressArray[6] = "97212";
+          addressArray[7] = "Sunnyside, OR"
+
+
+          for (var i = 0; i < addressArray.length; i++) {
+            codeAddress(addressArray[i]);
+          }
+        }
       });
+      function popitup(url) {
+        newwindow=window.open(url,'name','height=200,width=150');
+        if (window.focus) {newwindow.focus()}
+          return false;
+      }
+
     </script>
   </head>
 
-  <!-- Need to change this to jquery so onload doesn't take forever -->
-  <!-- Using Gresham as a placeholder for our future email addresses -->
-  <!-- With jquery use a loop to pass in email addresses with limits -->
   <body>
     <div >
 
@@ -81,12 +122,14 @@
       <img src="http://static.t-f-n.org/images/freecycle_logo.jpg" alt="free cycle logo" width="150px" height="50px">
     </a>
     <h1>Free Cycle Mapper</h1>
+
   </header>
 
   <section>
     <div class="map">
       <h2>Items available in Portland, OR</h2>
-      <div id="map_canvas" style="width:600px; height:600px"></div>
+      <div id="map_canvas" style="width:600px; height:600px">
+      </div>
     </div>
   </section>
 
