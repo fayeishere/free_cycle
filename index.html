@@ -4,43 +4,76 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgtUj9-u9zRi20k6Apg-Ii9TqbJmFa_2Q&sensor=false&marker=Portland,+Oregon">
-    </script>
-    <script type="text/javascript">
-      function initialize() {
-        // var mapOptions = {
-        //   center: new google.maps.LatLng(45.528, -122.676),
-        //   zoom: 12,
-        //   mapTypeId: google.maps.MapTypeId.ROADMAP
-        // };
-        var myLatlng = new google.maps.LatLng(45.528, -122.676);
-        var mapOptions = {
-          zoom: 12,
-          center: new google.maps.LatLng(45.528, -122.676),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgtUj9-u9zRi20k6Apg-Ii9TqbJmFa_2Q&sensor=false&marker=Portland,+Oregon"></script>
+    <script>
+      $(document).ready(function() {
+        function initialize() {
+          var myLatlng = new google.maps.LatLng(45.528, -122.676);
+          var mapOptions = {
+            zoom: 12,
+            center: new google.maps.LatLng(45.528, -122.676),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+          var marker = new google.maps.Marker({
+              position: myLatlng,
+              map: map,
+              title:"Freecycle Mapper!",
+          });
         }
-        var image ='arrow.png';
-        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title:"Hello World!",
-            icon: image
-        });
-      }
-      // To add the marker to the map, call setMap();
-      marker.setMap(map);
+
+        // To add the marker to the map, call setMap();
+        // Can't seem to keep green arrow marker with codeAddress marker
+        // marker.setMap(map);
+        var geocoder;
+        function initAddress() {
+          geocoder = new google.maps.Geocoder();
+          var latlng = new google.maps.LatLng(45.528, -122.676);
+          var mapOptions = {
+            zoom: 10,
+            center: latlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        }
+
+          // This function adds the address passed to the map as a marker
+        function codeAddress(address) {
+          // var address = document.getElementById("address").value;
+          geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              // map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+              });
+            } else {
+              alert("Geocode was not successful for the following reason: " + status);
+            }
+          });
+        }
+        initialize();
+        initAddress();
+        codeAddress("Gresham");
+        $("h1").click(function() {
+          alert("Help!")
+        })
+      });
     </script>
   </head>
 
-  <body onload="initialize()">
+  <!-- Need to change this to jquery so onload doesn't take forever -->
+  <!-- Using Gresham as a placeholder for our future email addresses -->
+  <!-- With jquery use a loop to pass in email addresses with limits -->
+  <body>
     <div >
 
     </div>
 
-<div class="container">
+    <div class="container">
 
   <header>
     <!-- banner -->
@@ -57,6 +90,8 @@
     </div>
   </section>
 
+
+
   <aside>
     <form>
       <fieldset>
@@ -71,21 +106,94 @@
 
     <div class="display-list">
       <h3>Today's Posts</h3>
-      <p><a href="#">Cracker Jack Boxes</a></p>
-      <p><a href="#">Magic Can Opener</a></p>
-      <p><a href="#">Dead Fish</a></p>
-      <p><a href="#">Socks</a></p>
-      <p><a href="#">Bronzed Chicken</a></p>
-      <p><a href="#">Green Ooze</a></p>
-      <p><a href="#">Box of mud</a></p>
-      <p><a href="#">Pilgrims</a></p>
-      <p><a href="#">Evil Mirror</a></p>
-      <p><a href="#">Surfer Movie</a></p>
-      <p><a href="#">OFFER: iPad</a></p>
-      <p><a href="#">OFFERING: Leaves</a></p>
-      <p><a href="#">Empty Gas Can</a></p>
-      <p><a href="#">Zombie Survival Kit</a></p>
-      <p><a href="#">Wonder Bread</a></p>
+      <div>
+        <div class="posts">
+          <a href="#" class="post">Cracker Jack Boxes</a>
+          <div class="post-icons">
+            <a href="#"><i class="icon-plus"></i></a>
+            <a href="#"><i class="icon-minus"></i></a>
+          </div>
+        </div>
+        <div class="posts">
+          <a href="#" class="post">Magic Wand</a>
+          <div class="post-icons">
+            <a href="#"><i class="icon-plus"></i></a>
+            <a href="#"><i class="icon-minus"></i></a>
+          </div>
+        </div>
+        <div class="posts">
+          <a href="#" class="post">Dead Fish</a>
+          <div class="post-icons">
+            <a href="#"><i class="icon-plus"></i></a>
+            <a href="#"><i class="icon-minus"></i></a>
+          </div>
+        </div>
+        <div class="posts">
+          <a href="#" class="post">Socks</a>
+          <div class="post-icons">
+            <a href="#"><i class="icon-plus"></i></a>
+            <a href="#"><i class="icon-minus"></i></a>
+          </div>
+        </div>
+        <div class="posts">
+          <a href="#" class="post">Golden Goose</a>
+          <div class="post-icons">
+            <a href="#"><i class="icon-plus"></i></a>
+            <a href="#"><i class="icon-minus"></i></a>
+          </div>
+        </div>
+        <div class="posts">
+          <a href="#" class="post">Green Ooze</a>
+          <div class="post-icons">
+            <a href="#"><i class="icon-plus"></i></a>
+            <a href="#"><i class="icon-minus"></i></a>
+          </div>
+        </div>
+        <div class="posts">
+          <a href="#" class="post">Box of Mud</a>
+          <div class="post-icons">
+            <a href="#"><i class="icon-plus"></i></a>
+            <a href="#"><i class="icon-minus"></i></a>
+          </div>
+        </div>
+        <div class="posts">
+          <a href="#" class="post">Pilgrims</a>
+          <div class="post-icons">
+            <a href="#"><i class="icon-plus"></i></a>
+            <a href="#"><i class="icon-minus"></i></a>
+          </div>
+        </div>
+        <div class="posts">
+          <a href="#" class="post">Evil Mirror</a>
+          <div class="post-icons">
+            <a href="#"><i class="icon-plus"></i></a>
+            <a href="#"><i class="icon-minus"></i></a>
+          </div>
+        </div>
+        <div class="posts">
+          <div class="post-div">
+            <a href="#" class="post">Surfer Movie</a>
+          </div>
+          <div class="post-icons">
+            <a href="#"><i class="icon-plus"></i></a>
+            <a href="#"><i class="icon-minus"></i></a>
+          </div>
+        </div>
+        <div class="posts">
+          <a href="#" class="post">Zombie Survival Kit</a>
+          <div class="post-icons">
+            <a href="#"><i class="icon-plus"></i></a>
+            <a href="#"><i class="icon-minus"></i></a>
+          </div>
+        </div>
+        <div class="posts">
+          <a href="#" class="post">Wonder Bread</a>
+          <div class="post-icons">
+            <a href="#"><i class="icon-plus"></i></a>
+            <a href="#"><i class="icon-minus"></i></a>
+          </div>
+        </div>
+      </div>
     </div>
   </aside>
 

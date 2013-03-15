@@ -18,7 +18,7 @@ section, aside {
   float: left;
 }
 aside {
-  width: 25%;
+  width: 30%;
   padding-top: 18px;
 }
 .display-list {
@@ -39,4 +39,32 @@ footer {
   clear: both;
   text-align: center;
   color: #999;
+}
+
+.posts {
+  clear: both;
+  position: relative;
+}
+.posts:hover {
+  opacity: .7;
+}
+.post {
+  display: inline-block;
+  width: 100%;
+}
+.post:hover {
+  text-decoration: none;
+}
+.post-icons, i, .post {
+  float: left;
+}
+.post-icons {
+  position: absolute;
+  right: 0;
+}
+i {
+  padding: 0 5px;
+}
+.post-div {
+  width: 50%;
 }
