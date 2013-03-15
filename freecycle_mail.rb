@@ -9,6 +9,19 @@ require 'json'
 
 # http://blog.rubybestpractices.com/posts/gregory/033-issue-4-configurable.html
 # http://metabates.com/2011/06/28/lets-say-goodbye-to-yaml-for-configuration-shall-we/
+
+
+# 'mail_config.rb should be a ruby file in the following format:
+
+# module FreeCycleMap
+#   USER_CONFIG = {
+#     :user_name => "username",
+#     :password => "password" }
+#   MAIL_CONFIG = {
+#     :server => "mailserver",
+#     :group => "freecycle mailing list email address" }
+# end
+
 # !!! FIXME [wc 2013-03-13]: This is somewhat bad
 
 credentials = {
@@ -19,6 +32,8 @@ credentials = {
 credentials[:address] = FreeCycleMap::MAIL_CONFIG[:server]
 credentials[:user_name] = FreeCycleMap::USER_CONFIG[:user_name]
 credentials[:password] = FreeCycleMap::USER_CONFIG[:password]
+
+
 
 Mail.defaults { retriever_method :imap, credentials }
 
