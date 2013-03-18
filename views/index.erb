@@ -4,9 +4,11 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
-    <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="tabs.css">
+    <script src="script.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="tabs.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgtUj9-u9zRi20k6Apg-Ii9TqbJmFa_2Q&sensor=false&marker=Portland,+Oregon"></script>
     <script>
       $(document).ready(function() {
@@ -141,15 +143,49 @@
         <legend>Filter your search</legend>
         <input type="text" placeholder="Location">
         <span class="help-block">Enter anything you would enter in a Google Maps search</span>
-        <input type="text" placeholder="Keyword">
-        <span class="help-block">Enter your heart's desire</span>
         <button type="submit" class="btn">Filter</button>
       </fieldset>
     </form>
 
     <div class="display-list">
       <h3>Today's Posts</h3>
-      <div>
+
+        <ul id="tabs">
+            <li><a href="#" name="tab1">ALL</a></li>
+            <li><a href="#" name="tab2">MAP</a></li>
+        </ul>
+
+        <div id="content">
+          <div id="tab1">
+            <ul>
+              <li><a href="#" class="post">Shamrock</a></li>
+              <li><a href="#" class="post">Magic Harp</a></li>
+              <li><a href="#" class="post">Butter</a></li>
+              <li>Socks</li>
+              <li>Hamster</li>
+              <li>Back Scratcher</li>
+              <li>Han Solo Poster</li>
+              <li>Ray Gun</li>
+              <li>1984</li>
+              <li>Avenger of Zendikar</li>
+            </ul>
+          </div>
+          <div id="tab2">
+            <ul>
+              <li>Crack</li>
+              <li>Box</li>
+              <li>Britney Spears Blow Up Doll</li>
+              <li>Cash</li>
+              <li>Coffee Mug</li>
+              <li>Harpsichord</li>
+              <li>Book of Jokes</li>
+              <li>Bandy</li>
+              <li>Ooze</li>
+              <li>Silly String</li>
+            </ul>
+          </div>
+        </div>
+<!-- <div>
         <div class="posts">
           <a href="#" class="post">Cracker Jack Boxes</a>
           <div class="post-icons">
@@ -236,7 +272,7 @@
             <a href="#"><i class="icon-minus"></i></a>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </aside>
 

@@ -72,6 +72,4 @@ def make_recent_offers_web_data
   recent_offer_places().to_json
 end
 
-hash.new[subject]
-
 # FIXME/TODO [wc 2013-03-14] Make a sensisible API for this.
