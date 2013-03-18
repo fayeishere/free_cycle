@@ -42,6 +42,8 @@ Mail.defaults { retriever_method :imap, credentials }
 def recent_offers (count=nil)
   # Returns a list of subject lines with the word 'offer' in them.
   return Mail.find({
+                     :order => :desc,
+                     :what => :last,
                      :count => count,
                      :keys => ["SUBJECT", "OFFER"]
                    }).map { |m| m.subject }
@@ -69,7 +71,7 @@ end
 
 def make_recent_offers_web_data
   # Return a json string of recent offer data
-  recent_offer_places().to_json
+  make_recent_offers_data().to_json
 end
 
-# FIXME/TODO [wc 2013-03-14] Make a sensisible API for this.
+# FIXME/TODO [wc 2013-03-14] Make a sensible API for this.
