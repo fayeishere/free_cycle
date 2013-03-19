@@ -48,7 +48,6 @@ def recent_offers (count=nil)
                      :keys => ["SUBJECT", "OFFER"]
                    }).map { |m| m.subject }
 end
-
 def make_offer_data (subject)
   # Returns a hash of the subject and location (more features to come)
   hash = {
@@ -60,7 +59,6 @@ def make_offer_data (subject)
     else
       raise "Location, #{hash[:location]}, neither nil or String."
     end
-  end
   return hash
 end
 

@@ -18,9 +18,8 @@ require './lib/freecycle_mail'
 #   end
 # end
 
-
 get '/' do
-  $recent_offers_data = make_recent_offers_web_data()
+  $recent_offers_data = [make_recent_offers_web_data()]
   erb :index
 end
 
