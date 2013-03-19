@@ -77,18 +77,33 @@ function codeAddress(address, infoWin) {
 
 function geoLoop() {
     // iterate over addresses array - one hash at a time
-        <% $recent_offers_data.each { |myhash| %>
-				      // call codeAddress and pass the location and subject
-				      codeAddress("<%=myhash[:location] %>", "<%=myhash[:subject] %>");
-				      var ready = ("<%=myhash[:subject] %>");
-				      $("#first").text(ready);
-				      <% } %>
+        // <% $recent_offers_data.each { |myhash| %>
+	// 			      // call codeAddress and pass the location and subject
+	// 			      codeAddress("<%=myhash[:location] %>", "<%=myhash[:subject] %>");
+	// 			      var ready = ("<%=myhash[:subject] %>");
+	// 			      $("#first").text(ready);
+	// 			      <% } %>
 	
-    // for (var address in addressArray)
-    // {
-    //   codeAddress(address, addressArray[address]);
+    // AJAX
+    $.ajax ({
+	url: "update_mail",
+	dataType: "json",
+	success: function(data) {
+	    console.log(data);
+	    for (var mail_data in data) {
+		if (typeof mail_data.location === 'String') {
+		    setInterval(codeAddress(mail_data.location, mail_data.subject), 500);
+		};
+		
+	    };},
+	type: "GET",
+	context: this
+    });
+
+    // for (var mail_data in recent_mail_data) {
+    // 	
     // }
-    
-    
 }
 // end geoLoop
+
+
