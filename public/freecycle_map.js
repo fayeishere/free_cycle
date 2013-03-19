@@ -91,7 +91,10 @@ function geoLoop() {
 	success: function(data) {
 	    console.log(data);
 	    for (var mail_data in data) {
-		codeAddress(mail_data.location, mail_data.subject);
+		if (typeof mail_data.location === 'String') {
+		    setInterval(codeAddress(mail_data.location, mail_data.subject), 500);
+		};
+		
 	    };},
 	type: "GET",
 	context: this
