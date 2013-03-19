@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'sinatra/json'
-# require './lib/freecycle_mail'
+require './lib/freecycle_mail'
 # require 'json'
 
 # get '/' do
@@ -20,15 +20,16 @@ require 'sinatra/json'
 
 
 get '/' do
+  $recent_offers_data = make_recent_offers_web_data()
   erb :index
 end
 
 
-get '/note/:id/?' do
-  content_type :json
-  json subject: 'test', content: 'test'
-end
+# get '/note/:id/?' do
+#   content_type :json
+#   json subject: 'test', content: 'test'
+# end
 
-delete '/note/:id/?' do
-  head :ok
-end
+# delete '/note/:id/?' do
+#   head :ok
+# end
