@@ -20,6 +20,7 @@ require './lib/freecycle_mail'
 
 get '/' do
   $recent_offers_data = [make_recent_offers_web_data()]
+  puts $recent_offers_data
   erb :index
 end
 
