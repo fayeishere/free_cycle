@@ -8,7 +8,7 @@ $(document).ready(function() {
     $("h1").click( function() {
         alert("Help!")
     });
-
+    
     function popitup(url) {
         newwindow=window.open(url,'name','height=200,width=150');
         if (window.focus) {newwindow.focus()}
@@ -67,7 +67,7 @@ function codeAddress(address, infoWin) {
                 //map.panTo(homeCenter);
                 currentPopup = null;
             });
-
+	    
         }
         else {
             alert("Geocode was not successful for the following reason: " + status);
@@ -77,18 +77,33 @@ function codeAddress(address, infoWin) {
 
 function geoLoop() {
     // iterate over addresses array - one hash at a time
-        <%= $recent_offers_data.each { |myhash| %>
-				      // call codeAddress and pass the location and subject
-				      codeAddress("<%=myhash[:location] %>", "<%=myhash[:subject] %>");
-				      var ready = ("<%=myhash[:subject] %>");
-				      $("#first").text(ready);
-				      <% } %>
+        // <% $recent_offers_data.each { |myhash| %>
+	// 			      // call codeAddress and pass the location and subject
+	// 			      codeAddress("<%=myhash[:location] %>", "<%=myhash[:subject] %>");
+	// 			      var ready = ("<%=myhash[:subject] %>");
+	// 			      $("#first").text(ready);
+	// 			      <% } %>
+	
+    // AJAX
+    $.ajax ({
+	url: "update_mail",
+	dataType: "json",
+	success: function(data) {
+	    console.log(data);
+	    for (var mail_data in data) {
+		if (typeof mail_data.location === 'String') {
+		    setInterval(codeAddress(mail_data.location, mail_data.subject), 500);
+		};
+		
+	    };},
+	type: "GET",
+	context: this
+    });
 
-    // for (var address in addressArray)
-    // {
-    //   codeAddress(address, addressArray[address]);
+    // for (var mail_data in recent_mail_data) {
+    // 	
     // }
-
-
 }
 // end geoLoop
+
+
