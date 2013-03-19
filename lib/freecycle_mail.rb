@@ -64,7 +64,7 @@ end
 
 def make_recent_offers_data
   # Returns a list of offer_data from offers
-  return recent_offers.map { |s| offer_data(s) }
+  return recent_offers.map { |s| make_offer_data(s) }
 end
 
 def make_recent_offers_web_data
