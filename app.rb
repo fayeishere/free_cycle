@@ -20,10 +20,12 @@ require './lib/freecycle_mail'
 
 
 get '/' do
-  $recent_offers_data = make_recent_offers_web_data()
   erb :index
 end
 
+get '/update_mail' do
+  return make_recent_offers_web_data()
+end
 
 # get '/note/:id/?' do
 #   content_type :json
