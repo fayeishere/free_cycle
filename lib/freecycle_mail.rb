@@ -87,7 +87,6 @@ def make_offer_data (subject)
   hash = {
     :subject => subject,
     :location => search_for_location(subject) }
-  end
   return hash
 end
 
