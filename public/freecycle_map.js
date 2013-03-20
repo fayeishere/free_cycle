@@ -8,7 +8,7 @@ $(document).ready(function() {
     $("h1").click( function() {
         alert("Help!")
     });
-    
+
     function popitup(url) {
         newwindow=window.open(url,'name','height=200,width=150');
         if (window.focus) {newwindow.focus()}
@@ -67,7 +67,7 @@ function codeAddress(address, infoWin) {
                 //map.panTo(homeCenter);
                 currentPopup = null;
             });
-	    
+
         }
         else {
             alert("Geocode was not successful for the following reason: " + status);
@@ -83,25 +83,28 @@ function geoLoop() {
 	// 			      var ready = ("<%=myhash[:subject] %>");
 	// 			      $("#first").text(ready);
 	// 			      <% } %>
-	
+
     // AJAX
     $.ajax ({
-	url: "update_mail",
+	url: "/",
 	dataType: "json",
 	success: function(data) {
 	    console.log(data);
-	    for (var mail_data in data) {
-		if (typeof mail_data.location === 'String') {
-		    setInterval(codeAddress(mail_data.location, mail_data.subject), 500);
+        // for (var mail_data in data) {
+	    for (this.location in data) {
+		  if (this.location=='string') {
+		    (codeAddress("5225 SE Taggart", "Yar");
+            console.log("hello");
 		};
-		
-	    };},
+
+	    };
+    },
 	type: "GET",
 	context: this
     });
 
     // for (var mail_data in recent_mail_data) {
-    // 	
+    //
     // }
 }
 // end geoLoop
