@@ -90,9 +90,9 @@ function geoLoop() {
 	dataType: "json",
 	success: function(data) {
 	    console.log(data);
-	    for (var mail_data in data) {
-		if (typeof mail_data.location === 'String') {
-		    setInterval(codeAddress(mail_data.location, mail_data.subject), 500);
+	    for (var i = 0; i < data.length; i++) {
+		if (typeof data[i].location === 'string') {
+		    setInterval(codeAddress(data[i].location, data[i].subject), 500);
 		};
 		
 	    };},
