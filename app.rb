@@ -18,7 +18,6 @@ require './lib/freecycle_mail'
 #   end
 # end
 
-
 get '/' do
   erb :index
 end

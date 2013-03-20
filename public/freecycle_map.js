@@ -8,7 +8,7 @@ $(document).ready(function() {
     $("h1").click( function() {
         alert("Help!")
     });
-    
+
     function popitup(url) {
         newwindow=window.open(url,'name','height=200,width=150');
         if (window.focus) {newwindow.focus()}
@@ -51,7 +51,7 @@ function codeAddress(address, infoWin) {
                 position: results[0].geometry.location
             });
             var popup = new google.maps.InfoWindow({
-                content: "infoWin",
+                content: 'infoWin',
                 maxWidth: 300
             });
             google.maps.event.addListener(marker, "click", function() {
@@ -67,7 +67,7 @@ function codeAddress(address, infoWin) {
                 //map.panTo(homeCenter);
                 currentPopup = null;
             });
-	    
+
         }
         else {
             alert("Geocode was not successful for the following reason: " + status);
@@ -83,25 +83,27 @@ function geoLoop() {
 	// 			      var ready = ("<%=myhash[:subject] %>");
 	// 			      $("#first").text(ready);
 	// 			      <% } %>
-	
+
     // AJAX
     $.ajax ({
 	url: "update_mail",
 	dataType: "json",
 	success: function(data) {
 	    console.log(data);
+
 	    for (var i = 0; i < data.length; i++) {
 		if (typeof data[i].location === 'string') {
-		    setInterval(codeAddress(data[i].location, data[i].subject), 500);
+            setInterval(codeAddress(data[i].location, data[i].subject), 500);
 		};
-		
-	    };},
+
+	    };
+    },
 	type: "GET",
 	context: this
     });
 
     // for (var mail_data in recent_mail_data) {
-    // 	
+    //
     // }
 }
 // end geoLoop

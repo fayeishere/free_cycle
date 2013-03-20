@@ -99,5 +99,3 @@ def make_recent_offers_web_data
   # Return a json string of recent offer data
   make_recent_offers_data().to_json
 end
-
-# FIXME/TODO [wc 2013-03-14] Make a sensible API for this.
