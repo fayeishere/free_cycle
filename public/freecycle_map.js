@@ -90,11 +90,10 @@ function geoLoop() {
 	dataType: "json",
 	success: function(data) {
 	    console.log(data);
-        // for (var mail_data in data) {
-	    for (this.location in data) {
-		  if (this.location=='string') {
-		    (codeAddress("5225 SE Taggart", "Yar");
-            console.log("hello");
+
+	    for (var i = 0; i < data.length; i++) {
+		if (typeof data[i].location === 'string') {
+		    setInterval(codeAddress(data[i].location, data[i].subject), 500);
 		};
 
 	    };
