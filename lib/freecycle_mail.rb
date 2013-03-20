@@ -11,7 +11,7 @@ require 'json'
 # http://metabates.com/2011/06/28/lets-say-goodbye-to-yaml-for-configuration-shall-we/
 
 
-# 'mail_config.rb should be a ruby file in the following format:
+# 'lib/mail_config.rb should be a ruby file in the following format:
 
 # module FreeCycleMap
 #   USER_CONFIG = {
@@ -48,17 +48,45 @@ def recent_offers (count=nil)
                      :keys => ["SUBJECT", "OFFER"]
                    }).map { |m| m.subject }
 end
+
+def search_for_location (subject)
+  # Search a subject for possible locations
+
+  # first check for location in parentheses
+  location = subject.scan(/\(.*\)/).first
+  unless location.nil?
+    if location.is_a? String
+      location = location[1..-2]
+    end
+  end
+
+  # check for location after one or more dashes
+  if location.nil?
+    s = subject.split(/-+/).last
+    s == subject ? location = nil : location = s.strip
+  end
+
+  # check for location after the last word "in"
+  if location.nil?
+    s = subject.split(/in /).last
+    s == subject ? location = nil : location = s.strip
+  end
+
+  # raise an error if somehow the location in string is neither nil or
+  # string
+  unless location.nil?
+    unless location.is_a? String
+      raise "Location, #{location}, neither nil or String."
+    end
+  end
+  return location
+end
+
 def make_offer_data (subject)
   # Returns a hash of the subject and location (more features to come)
   hash = {
     :subject => subject,
-    :location => subject.scan(/\(.*\)/).first }
-  unless hash[:location].nil?
-    if hash[:location].is_a? String
-      hash[:location] = hash[:location][1..-2]
-    else
-      raise "Location, #{hash[:location]}, neither nil or String."
-    end
+    :location => search_for_location(subject) }
   end
   return hash
 end
