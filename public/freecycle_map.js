@@ -51,7 +51,7 @@ function codeAddress(address, infoWin) {
                 position: results[0].geometry.location
             });
             var popup = new google.maps.InfoWindow({
-                content: 'infoWin',
+                content: infoWin,
                 maxWidth: 300
             });
             google.maps.event.addListener(marker, "click", function() {
