@@ -21,16 +21,16 @@
 
   <header>
     <!-- banner -->
-    <a href="#">
-      <img src="http://static.t-f-n.org/images/freecycle_logo.jpg" alt="free cycle logo" width="150px" height="50px">
-    </a>
-    <h1>Free Cycle Mapper</h1>
+    <div id="logo">
+      <a href="../public/logo.png"></a>
+    </div>
+    <h1>Free Cycle Mapper - Portland, Oregon</h1>
 
   </header>
 
   <section>
     <div class="map">
-      <h2>Items available in Portland, OR</h2>
+      <h2>Free Cycle Items available in Portland, OR</h2>
       <div id="map_canvas" style="width:600px; height:600px">
       </div>
     </div>
@@ -58,18 +58,10 @@
 
         <div id="content">
           <div id="tab1">
-            <ul>
-              <li><a href="#" class="post">Shamrock</a></li>
-              <li><a href="#" class="post">Magic Harp</a></li>
-              <li><a href="#" class="post">Butter</a></li>
-            </ul>
+            <ul id="subject-list"></ul>
           </div>
           <div id="tab2">
-            <ul>
-              <li><a href="#" class="post">Crack</a></li>
-              <li><a href="#" class="post">Britney Spears Socks</a></li>
-              <li><a href="#" class="post">Cash</a></li>
-            </ul>
+            <ul id="location-list"></ul>
           </div>
         </div>
 
@@ -77,7 +69,11 @@
   </aside>
 
   <footer class="well well-large">
-    <h4>Contact us at 4567 SassyAss Lane in Portland, OR</h4>
+    <div class="freecycle-logo">
+      <a href="#">
+        <img src="http://static.t-f-n.org/images/freecycle_logo.jpg" alt="free cycle logo" width="150px" height="50px">
+      </a>
+    </div>
   </footer>
 
 </div>

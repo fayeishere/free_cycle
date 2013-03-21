@@ -75,6 +75,24 @@ function codeAddress(address, infoWin) {
     });
 }
 
+function MakeSubjectList(data) {
+    for (var i = 0; i < data.length; i++) {
+        var post_subject_item = $('<li>' + data[i].subject + '</li>');
+        $('#subject-list').prepend(post_subject_item);
+    }
+}
+
+function MakeLocationList(data) {
+    var post_location_item;
+    for (var i = 0; i < data.length; i++) {
+        if ( typeof data[i].location !== null) {
+            post_location_item = $('<li>' + data[i].subject + '</li>');
+            $('#location-list').prepend(post_location_item);
+        }
+    }
+}
+
+
 function geoLoop() {
     // iterate over addresses array - one hash at a time
         // <% $recent_offers_data.each { |myhash| %>
@@ -90,12 +108,16 @@ function geoLoop() {
 	dataType: "json",
 	success: function(data) {
 	    console.log(data);
+        // generate location list via jquery
+        MakeLocationList(data);
+        // generate subject list via jquery
+        MakeSubjectList(data);
 
 	    for (var i = 0; i < data.length; i++) {
 		if (typeof data[i].location === 'string') {
             setInterval(codeAddress(data[i].location, data[i].subject), 500);
-		};
 
+        }
 	    };
     },
 	type: "GET",
