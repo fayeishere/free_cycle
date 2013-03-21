@@ -51,7 +51,7 @@ function codeAddress(address, infoWin) {
                 position: results[0].geometry.location
             });
             var popup = new google.maps.InfoWindow({
-                content: 'infoWin',
+                content: infoWin,
                 maxWidth: 300
             });
             google.maps.event.addListener(marker, "click", function() {
@@ -90,12 +90,16 @@ function geoLoop() {
 	dataType: "json",
 	success: function(data) {
 	    console.log(data);
-
+        //begin loop to iterate through data objects
 	    for (var i = 0; i < data.length; i++) {
 		if (typeof data[i].location === 'string') {
+            //set interval delays google query
+            //call codeAddress- pass location and subject to populate
             setInterval(codeAddress(data[i].location, data[i].subject), 500);
 		};
-
+    $("#first").text(data[0].subject);
+    $("#second").text(data[1].subject);
+    $("#third").text(data[2].subject);
 	    };
     },
 	type: "GET",

@@ -38,8 +38,8 @@ credentials[:password] = FreeCycleMap::USER_CONFIG[:password]
 Mail.defaults { retriever_method :imap, credentials }
 
 # Now we are ready to retrieve mail and work with them.
-
-def recent_offers (count=nil)
+# IS THERE A WAY TO GET THE ID OR REFERENCE IN ORDER TO LINK BACK TO IT?
+def recent_offers (count=30)
   # Returns a list of subject lines with the word 'offer' in them.
   return Mail.find({
                      :order => :desc,
