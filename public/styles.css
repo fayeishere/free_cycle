@@ -1,26 +1,61 @@
-#map_canvas {
-  height: 100%
-}
-header a, h1 {
+/* Free Cycle Mapper, Portland, Oregon
+ *
+ * ~ the ORIGINAL Free Cycle Mapper
+ *
+ * Conceived by Patti Lavelle
+ * Development by William Clifford, Faye Purdum, and Cris Kelly in Feb 2013
+ *
+ * For information on creating your an FCM in your area, contact {...}
+*/
+
+/* LAYOUT STYLES ============================== */
+
+header a, h1, section, aside {
   float: left;
 }
+
+/* HEADER STYLES ============================== */
+
 h1 {
   margin: 15px 0 50px 200px;
   color: green;
 }
+
+/* MAIN SECTION STYLES ========================= */
 
 section {
   clear: both;
   width: 70%;
   margin-top: -30px;
 }
-section, aside {
-  float: left;
+
+/* MAP PORTION OF THE BODY ====================== */
+
+#map_canvas {
+  height: 100%
 }
+h2 {
+  font-size: 1.2em;
+  margin: 15px 0 0;
+}
+
+/* ASIDE STYLES ================================= */
+
 aside {
   width: 30%;
   padding-top: 18px;
 }
+
+/* FILTER FORM STYLES ================================= */
+
+legend {
+  color: green;
+  font-size: 2.5em;
+}
+
+/* POST-LIST SPECIFIC STYLES ====================
+  (tabs styles are in the tabs.css file) ======= */
+
 .display-list {
   background: green;
   padding: 0 7px 7px;
@@ -36,12 +71,6 @@ h3 {
   text-align: center;
   color: #fff;
 }
-footer {
-  clear: both;
-  text-align: center;
-  color: #999;
-}
-
 .posts {
   clear: both;
   position: relative;
@@ -63,9 +92,15 @@ footer {
   position: absolute;
   right: 0;
 }
-i {
-  padding: 0 5px;
-}
 .post-div {
   width: 50%;
 }
+
+/* FOOTER STYLES ================================ */
+
+footer {
+  clear: both;
+  text-align: center;
+  color: #999;
+}
+
