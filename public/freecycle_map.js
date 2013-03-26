@@ -109,24 +109,24 @@ function geoLoop() {
 	success: function(data) {
 	    console.log(data);
         // generate location list via jquery
-        MakeLocationList(data);
+        // MakeLocationList(data);
         // generate subject list via jquery
-        MakeSubjectList(data);
+        // MakeSubjectList(data);
+        // console.log(MakeSubjectList);
         //begin loop to iterate through data objects
 	    for (var i = 0; i < data.length; i++) {
-		if (typeof data[i].location === 'string') {
-            //set interval delays google query
-            //call codeAddress- pass location and subject to populate
-            setInterval(codeAddress(data[i].location, data[i].subject), 500);
-		};
-    // $("#first").text(data[0].subject);
-    // $("#second").text(data[1].subject);
-    // $("#third").text(data[2].subject);
-
+    		if (typeof data[i].location === 'string') {
+                //set interval delays google query
+                //call codeAddress- pass location and subject to populate
+                setInterval(codeAddress(data[i].location, data[i].subject), 500);
+    		};
         }
+        // $("#first").text(data[0].subject);
+        $("#second").text(data[1].subject);
+        $("#third").text(data[2].subject);
 
-	    };
-    },
+
+	    },
 	type: "GET",
 	context: this
     });
